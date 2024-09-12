@@ -20,4 +20,16 @@ class BlogController extends Controller
         $authors = BlogAuthor::get();
         return view('welcome', compact('posts', 'categories', 'authors'));
     }
+
+    public function show($slug)
+    {
+        $categories = BlogCategory::select(
+            "id",
+            "name",
+            "slug",
+        )->get();
+        $authors = BlogAuthor::get();
+        $post = BlogPost::where('slug', $slug)->with('author', 'category')->first();
+        return view('blog.detailed', compact('post', 'categories', 'authors'));
+    }
 }
