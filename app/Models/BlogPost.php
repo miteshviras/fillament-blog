@@ -24,12 +24,12 @@ class BlogPost extends Model
     ];
 
 
-    public function authors()
+    public function author()
     {
         return $this->belongsTo(BlogAuthor::class, 'blog_author_id');
     }
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(BlogCategory::class, 'blog_category_id');
     }
